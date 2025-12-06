@@ -1,4 +1,4 @@
-name: Build 测试
+name: 测试6.6.89 8E 请勿修改自定义中的tmp-builtin因为新版有点bug，必须添加这串
 on:
   workflow_dispatch:
     inputs:
@@ -79,7 +79,7 @@ on:
         type: string
         description: "分支名(必填)/自定义版本标识(留空不修改)/回退分支提交哈希版本(留空不修改)"
         required: false
-        default: "tmp-builtin/Numbersf/"
+        default: "tmp-builtin/自定义/"
       SUFFIX:
         type: string
         description: "自定义内核后缀(不输入使用随机字符串)"
