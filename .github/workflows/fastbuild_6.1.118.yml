@@ -1,4 +1,4 @@
-name: 6.1通用 骁龙
+name:  6.1通用 骁龙
 
 env:
   TZ: Asia/Shanghai
@@ -205,7 +205,7 @@ jobs:
             # 创建版本定义模板&版本格式函数: 使用获取的提交哈希和固定后缀
             # KSU_VERSION_API: API 版本定义
             # KSU_VERSION_FULL: 完整版本定义
-            VERSION_DEFINITIONS=$'define get_ksu_version_full\nv\\$1-'$'@酷安AMXlil\nendef\n\nKSU_VERSION_API := '"$KSU_API_VERSION"$'\nKSU_VERSION_FULL := v'"$KSU_API_VERSION"$'-'$'@酷安AMXlil'
+             VERSION_DEFINITIONS=$'define get_ksu_version_full\nv\\$1-'$'@酷安AMXlil\nendef\n\nKSU_VERSION_API := '"$KSU_API_VERSION"$'\nKSU_VERSION_FULL := v'"$KSU_API_VERSION"$'-'$'@酷安AMXlil'
             # 清理内核 Kbuild 中的旧版本定义
             # 删除版本函数
             sed -i '/define get_ksu_version_full/,/endef/d' kernel/Kbuild
@@ -328,8 +328,6 @@ jobs:
             #为MKSU修正susfs 2.0.0补丁
             wget https://github.com/cctv18/oppo_oplus_realme_sm8650/raw/refs/heads/main/other_patch/mksu_supercalls.patch
             patch -p1 < mksu_supercalls.patch || true
-            wget https://github.com/cctv18/oppo_oplus_realme_sm8650/raw/refs/heads/main/other_patch/fix_umount.patch
-            patch -p1 < fix_umount.patch || true
             cd ../common
             patch -p1 < 50_add_susfs_in_gki-${{ env.ANDROID_VERSION }}-${{ env.KERNEL_VERSION }}.patch || true
             patch -p1 -N -F 3 < 69_hide_stuff.patch || true
@@ -361,8 +359,6 @@ jobs:
             cp ./SukiSU_patch/69_hide_stuff.patch ./common/
             cd ./KernelSU
             patch -p1 < 10_enable_susfs_for_ksu.patch || true
-            wget https://github.com/cctv18/oppo_oplus_realme_sm8650/raw/refs/heads/main/other_patch/fix_umount.patch
-            patch -p1 < fix_umount.patch || true
             cd ../common
             patch -p1 < 50_add_susfs_in_gki-${{ env.ANDROID_VERSION }}-${{ env.KERNEL_VERSION }}.patch || true
             patch -p1 -N -F 3 < 69_hide_stuff.patch || true
